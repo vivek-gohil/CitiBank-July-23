@@ -1,12 +1,21 @@
 package com.citibank.repository;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.citibank.domain.Employee;
 
 public class EmployeeRepository {
-	private List<Employee> employeeList = new ArrayList<>();
+	private Set<Employee> employeeSet = new HashSet<>();
+
+	public boolean deleteEmployeeByEmployeeId(int employeeId) {
+		Employee employee = getEmployeeByEmployeeId(employeeId);
+		if (employee != null) {
+			employeeSet.remove(employee);
+			return true;
+		}
+		return false;
+	}
 
 	public boolean updateEmployeeSalary(int employeeId, double newSalary) {
 		Employee employee = getEmployeeByEmployeeId(employeeId);
@@ -18,7 +27,7 @@ public class EmployeeRepository {
 	}
 
 	public Employee getEmployeeByEmployeeId(int employeeId) {
-		for (Employee employee : employeeList) {
+		for (Employee employee : employeeSet) {
 			if (employee.getEmployeeId() == employeeId) {
 				return employee;
 			}
@@ -27,10 +36,10 @@ public class EmployeeRepository {
 	}
 
 	public boolean addNewEmployee(Employee employee) {
-		return employeeList.add(employee);
+		return employeeSet.add(employee);
 	}
 
-	public List<Employee> getAllEmployees() {
-		return employeeList;
+	public Set<Employee> getAllEmployees() {
+		return employeeSet;
 	}
 }

@@ -1,5 +1,7 @@
 package com.citibank.domain;
 
+import java.util.Objects;
+
 public class Employee {
 	private int employeeId;
 	private String name;
@@ -41,10 +43,28 @@ public class Employee {
 	}
 
 	@Override
+	public int hashCode() {
+		System.out.println("in hashCode");
+		return Objects.hash(employeeId, name, salary);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		System.out.println("in equals");
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		return employeeId == other.employeeId && Objects.equals(name, other.name)
+				&& Double.doubleToLongBits(salary) == Double.doubleToLongBits(other.salary);
+	}
+
+	@Override
 	public String toString() {
 		return "Employee [employeeId=" + employeeId + ", name=" + name + ", salary=" + salary + "]";
 	}
 
 }
-
-

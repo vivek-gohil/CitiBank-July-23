@@ -1,6 +1,5 @@
 package com.citibank.main;
 
-import java.util.List;
 import java.util.Scanner;
 
 import com.citibank.domain.Employee;
@@ -15,7 +14,9 @@ public class EmployeeCRUDMain {
 		int choice;
 		String continueChoice;
 		int employeeId;
-		String name;
+		String firstName;
+		String lastName;
+		String email;
 		double salary;
 		boolean result;
 		do {
@@ -33,28 +34,33 @@ public class EmployeeCRUDMain {
 				System.out.println("Enter EmployeeId");
 				employeeId = scanner.nextInt();
 				scanner.nextLine();
-				System.out.println("Enter Name");
-				name = scanner.nextLine();
+				System.out.println("Enter First Name");
+				firstName = scanner.next();
+				System.out.println("Enter Last Name");
+				lastName = scanner.next();
+				System.out.println("Enter Email");
+				email = scanner.next();
 				System.out.println("Enter Salary");
 				salary = scanner.nextDouble();
-				employee = new Employee(employeeId, name, salary);
+
+				employee = new Employee(employeeId, firstName, lastName, email, salary);
 				result = employeeRepository.addNewEmployee(employee);
 				if (result)
 					System.out.println("Employee added successfully");
 				else
 					System.out.println("Failed to add new employee!");
 				break;
-			case 2:
-				System.out.println("Enter EmployeeId");
-				employeeId = scanner.nextInt();
-				System.out.println("Enter New Salary");
-				salary = scanner.nextDouble();
-				result = employeeRepository.updateEmployeeSalary(employeeId, salary);
-				if (result)
-					System.out.println("Salary is updated successfully");
-				else
-					System.out.println("No employee found!");
-				break;
+//			case 2:
+//				System.out.println("Enter EmployeeId");
+//				employeeId = scanner.nextInt();
+//				System.out.println("Enter New Salary");
+//				salary = scanner.nextDouble();
+//				result = employeeRepository.updateEmployeeSalary(employeeId, salary);
+//				if (result)
+//					System.out.println("Salary is updated successfully");
+//				else
+//					System.out.println("No employee found!");
+//				break;
 			case 3:
 				System.out.println("Enter EmployeeId");
 				employeeId = scanner.nextInt();
@@ -70,16 +76,16 @@ public class EmployeeCRUDMain {
 					System.out.println(e);
 				}
 				break;
-			case 5:
-				System.out.println("Enter EmployeeId");
-				employeeId = scanner.nextInt();
-				result = employeeRepository.deleteEmployeeByEmployeeId(employeeId);
-				if (result) {
-					System.out.println("Employee deleted successfully!");
-				} else {
-					System.out.println("No employee found!");
-				}
-				break;
+//			case 5:
+//				System.out.println("Enter EmployeeId");
+//				employeeId = scanner.nextInt();
+//				result = employeeRepository.deleteEmployeeByEmployeeId(employeeId);
+//				if (result) {
+//					System.out.println("Employee deleted successfully!");
+//				} else {
+//					System.out.println("No employee found!");
+//				}
+//				break;
 			default:
 
 				break;
